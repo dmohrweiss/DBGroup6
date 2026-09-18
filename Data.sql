@@ -1,3 +1,5 @@
+USE healthcare_db;
+
 INSERT INTO ResidenceType (ResidenceTypeID, Label) VALUES
 (1, 'Urban'),
 (2, 'Suburban'),
