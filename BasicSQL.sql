@@ -1,5 +1,5 @@
 UPDATE HealthMetrics
-SET HealthLableID = 4
+SET HealthLabelID = 4
 WHERE MentalHealthScore > 3 AND DistanceToCareKM < 50;
 
 UPDATE CostOfLiving
