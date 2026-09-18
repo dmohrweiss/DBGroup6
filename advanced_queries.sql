@@ -52,7 +52,7 @@ ORDER BY hm.ChronicConditionsCount DESC, dh.HouseholdIncome ASC;
 -- QUERY 3: State-Level Health Deprivation Ranking Using Window Functions
 -- Window Function (DENSE_RANK() OVER PARTITION BY), Multi-table JOINs
 -- Ranks individuals within their respective State based on multi-factor health risk indicators (chronic conditions count, distance to care, and mental health score).
--- -----------------------------------------------------------------------------
+
 SELECT 
     r.StateName,
     CONCAT(p.FirstName, ' ', p.LastName) AS FullName,
