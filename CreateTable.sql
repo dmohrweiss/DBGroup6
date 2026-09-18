@@ -1,3 +1,6 @@
+DROP SCHEMA IF EXISTS healthcare_db;
+CREATE SCHEMA healthcare_db;
+USE healthcare_db;
 
 CREATE TABLE ResidenceType (
   PK_ResidenceTypeID INT PRIMARY KEY,
