@@ -3,31 +3,31 @@ CREATE SCHEMA healthcare_db;
 USE healthcare_db;
 
 CREATE TABLE ResidenceType (
-  PK_ResidenceTypeID INT PRIMARY KEY,
+  ResidenceTypeID INT PRIMARY KEY,
   Label VARCHAR(30),
   Description VARCHAR(255) 
 );
 
 CREATE TABLE Gender (
-  PK_GenderID INT PRIMARY KEY,
+  GenderID INT PRIMARY KEY,
   Label VARCHAR(10),
   Code INT 
 );
 
 CREATE TABLE Region (
-  PK_StateID INT PRIMARY KEY,
+  StateID INT PRIMARY KEY,
   StateName VARCHAR(50)
 );
 
 CREATE TABLE HealthLabel (
-  PK_HealthLabelID INT PRIMARY KEY,
+  HealthLabelID INT PRIMARY KEY,
   CategoryLabelName VARCHAR(30),
   Description VARCHAR(255)
 );
 
 CREATE TABLE CostOfLiving (
-  PK_CostOfLivingID INT PRIMARY KEY,
-  FK_StateID INT,
+  CostOfLivingID INT PRIMARY KEY,
+  StateID INT,
   RegionCode VARCHAR(10),
   CostIndex DECIMAL(6,2),
   HousingCostIndex DECIMAL(6,2),
@@ -38,9 +38,9 @@ CREATE TABLE CostOfLiving (
 );
 
 CREATE TABLE Household (
-  PK_HouseholdID INT PRIMARY KEY,
-  FK_ResidenceTypeID INT,
-  FK_CostOfLivingID INT,
+  HouseholdID INT PRIMARY KEY,
+  ResidenceTypeID INT,
+  CostOfLivingID INT,
   HouseholdIncome DECIMAL(10,2),
   HouseholdSize INT,
   NumEarners INT,
@@ -50,9 +50,9 @@ CREATE TABLE Household (
 );
 
 CREATE TABLE Person (
-  PK_PersonID INT PRIMARY KEY,
-  FK_HouseholdID INT,
-  FK_GenderID INT,
+  PersonID INT PRIMARY KEY,
+  HouseholdID INT,
+  GenderID INT,
   FirstName VARCHAR(30),
   LastName VARCHAR(30),
   DOB DATE,
@@ -63,8 +63,8 @@ CREATE TABLE Person (
 );
 
 CREATE TABLE HealthMetrics (
-  PK_FK_PersonID INT PRIMARY KEY,
-  FK_HealthLabelID INT,
+  PersonID INT PRIMARY KEY,
+  HealthLabelID INT,
   DistanceToCareKM DECIMAL(6,2),
   HasInsurance BOOLEAN,
   BMI DECIMAL(4,1),
