@@ -1,0 +1,13 @@
+# Raw downloads (~60 MB); recreate with: python etl/fetch_data.py
+data/raw/*
+!data/raw/MANIFEST.txt
+
+# Personal feedback / grade exports
+*received feedback*.pdf
+
+__pycache__/
+
+# Original uploads, copied into docs/week2 and docs/week4 (video compressed: 131 MB -> 5 MB;
+# GitHub rejects files over 100 MB)
+Scheme for Database Presentation*.mp4
+Databases_Assignement2_Report*.pdf

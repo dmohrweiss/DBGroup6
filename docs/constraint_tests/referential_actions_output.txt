@@ -1,0 +1,118 @@
+--------------
+-- =====================================================================
+--------------
+
+--------------
+-- Referential-action demo (run after the clean load). Everything is rolled back.
+--------------
+
+--------------
+-- =====================================================================
+--------------
+
+--------------
+START TRANSACTION
+--------------
+
+--------------
+-- 1. ON DELETE CASCADE: deleting a person also deletes their HealthMetrics row
+--------------
+
+--------------
+SELECT COUNT(*) AS health_rows_before FROM HealthMetrics WHERE PersonID = 1
+--------------
+
++--------------------+
+| health_rows_before |
++--------------------+
+|                  1 |
++--------------------+
+--------------
+DELETE FROM Person WHERE PersonID = 1
+--------------
+
+--------------
+SELECT COUNT(*) AS health_rows_after FROM HealthMetrics WHERE PersonID = 1
+--------------
+
++-------------------+
+| health_rows_after |
++-------------------+
+|                 0 |
++-------------------+
+--------------
+-- 2. ON DELETE RESTRICT: a household that still has members cannot be deleted
+--------------
+
+--------------
+DELETE FROM Household WHERE HouseholdID = 2
+--------------
+
+ERROR 1451 (23000) at line 13: Cannot delete or update a parent row: a foreign key constraint fails (`healthcare_db`.`person`, CONSTRAINT `fk_person_household` FOREIGN KEY (`HouseholdID`) REFERENCES `household` (`HouseholdID`) ON DELETE RESTRICT ON UPDATE CASCADE)
+--------------
+-- 3. ON DELETE RESTRICT: a lookup value in use cannot be deleted
+--------------
+
+--------------
+DELETE FROM ResidenceType WHERE Label = 'Rural'
+--------------
+
+ERROR 1451 (23000) at line 16: Cannot delete or update a parent row: a foreign key constraint fails (`healthcare_db`.`household`, CONSTRAINT `fk_hh_residence` FOREIGN KEY (`ResidenceTypeID`) REFERENCES `residencetype` (`ResidenceTypeID`) ON DELETE RESTRICT ON UPDATE CASCADE)
+--------------
+-- 4. Foreign key: a person cannot reference a non-existent gender
+--------------
+
+--------------
+INSERT INTO Person (HouseholdID, GenderID) VALUES (2, 99)
+--------------
+
+ERROR 1452 (23000) at line 19: Cannot add or update a child row: a foreign key constraint fails (`healthcare_db`.`person`, CONSTRAINT `fk_person_gender` FOREIGN KEY (`GenderID`) REFERENCES `gender` (`GenderID`) ON DELETE RESTRICT ON UPDATE CASCADE)
+--------------
+-- 5. ON UPDATE CASCADE: renumbering a lookup key propagates to the children
+--------------
+
+--------------
+SELECT COUNT(*) AS rural_households_before FROM Household WHERE ResidenceTypeID = 3
+--------------
+
++-------------------------+
+| rural_households_before |
++-------------------------+
+|                      76 |
++-------------------------+
+--------------
+UPDATE ResidenceType SET ResidenceTypeID = 30 WHERE ResidenceTypeID = 3
+--------------
+
+--------------
+SELECT COUNT(*) AS rural_households_after FROM Household WHERE ResidenceTypeID = 30
+--------------
+
++------------------------+
+| rural_households_after |
++------------------------+
+|                     76 |
++------------------------+
+--------------
+-- 6. UNIQUE: the same BRFSS interview cannot be loaded twice
+--------------
+
+--------------
+INSERT INTO Household (CostOfLivingID, SourceRecordKey)
+SELECT CostOfLivingID, SourceRecordKey FROM Household WHERE HouseholdID = 2
+--------------
+
+ERROR 1062 (23000) at line 27: Duplicate entry 'BRFSS2023-06-2023000418' for key 'household.SourceRecordKey'
+--------------
+-- 7. UNIQUE (StateID, Year): one price record per state per year
+--------------
+
+--------------
+INSERT INTO CostOfLiving (StateID, Year, CostIndex) VALUES (6, 2023, 100)
+--------------
+
+ERROR 1062 (23000) at line 31: Duplicate entry '6-2023' for key 'costofliving.uq_col_state_year'
+--------------
+ROLLBACK
+--------------
+

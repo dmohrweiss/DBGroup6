@@ -1,0 +1,3 @@
+# CSV files are bulk-loaded with LOAD DATA ... LINES TERMINATED BY '\n'
+*.csv text eol=lf
+*.sql text eol=lf

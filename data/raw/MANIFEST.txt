@@ -1,0 +1,18 @@
+Downloaded: 2026-10-02
+
+LLCP2023ASC.zip
+  url: https://www.cdc.gov/brfss/annual_data/2023/files/LLCP2023ASC.zip
+  last-modified: Tue, 10 Sep 2024 19:16:03 GMT
+  bytes: 60057185
+llcp_varlayout_23_onecolumn.html
+  url: https://www.cdc.gov/brfss/annual_data/2023/llcp_varlayout_23_onecolumn.html
+  last-modified: unknown
+  bytes: 112803
+codebook23_llcp-v2-508.zip
+  url: https://www.cdc.gov/brfss/annual_data/2023/zip/codebook23_llcp-v2-508.zip
+  last-modified: Fri, 28 Feb 2025 14:37:08 GMT
+  bytes: 85594
+SARPP.zip
+  url: https://apps.bea.gov/regional/zip/SARPP.zip
+  last-modified: Thu, 19 Feb 2026 13:30:06 GMT
+  bytes: 39230

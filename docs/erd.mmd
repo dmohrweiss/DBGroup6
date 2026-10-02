@@ -1,0 +1,81 @@
+---
+title: healthcare_db - Entity Relationship Diagram (crow's foot notation, Week 5)
+---
+erDiagram
+    BEARegion ||--|{ Region : "groups"
+    Region ||--o{ CostOfLiving : "has price level per year"
+    CostOfLiving ||--o{ Household : "applies to"
+    ResidenceType |o--o{ Household : "classifies"
+    Household ||--|{ Person : "has members"
+    Gender ||--o{ Person : "describes"
+    Person ||--o| HealthMetrics : "is measured by"
+    HealthLabel ||--o{ HealthMetrics : "categorizes"
+
+    BEARegion {
+        int BEARegionCode PK "BEA code 1-8"
+        varchar RegionName UK "NOT NULL"
+    }
+    Region {
+        int StateID PK "FIPS state code"
+        varchar StateName UK "NOT NULL"
+        char StateAbbrev UK "NOT NULL"
+        int BEARegionCode FK "NOT NULL"
+    }
+    CostOfLiving {
+        int CostOfLivingID PK "AUTO_INCREMENT"
+        int StateID FK "NOT NULL, UK(StateID, Year)"
+        smallint Year UK "NOT NULL, 2000-2100"
+        decimal CostIndex "NOT NULL, > 0 (RPP all items)"
+        decimal GoodsCostIndex "> 0"
+        decimal HousingCostIndex "> 0"
+        decimal UtilitiesCostIndex "> 0"
+        decimal OtherServicesCostIndex "> 0"
+    }
+    ResidenceType {
+        int ResidenceTypeID PK "AUTO_INCREMENT"
+        varchar Label UK "NOT NULL"
+        varchar Description
+    }
+    Household {
+        int HouseholdID PK "AUTO_INCREMENT"
+        varchar SourceRecordKey UK "survey interview key"
+        int ResidenceTypeID FK "nullable"
+        int CostOfLivingID FK "NOT NULL"
+        decimal HouseholdIncome ">= 0"
+        int HouseholdSize "1-99"
+        int NumEarners "0..HouseholdSize"
+        int ChildrenUnderLegalAge "0..HouseholdSize-1"
+    }
+    Gender {
+        int GenderID PK "AUTO_INCREMENT"
+        varchar Label UK "NOT NULL"
+    }
+    Person {
+        int PersonID PK "AUTO_INCREMENT"
+        int HouseholdID FK "NOT NULL"
+        int GenderID FK "NOT NULL"
+        varchar FirstName
+        varchar LastName
+        date DOB ">= 1900-01-01"
+        varchar AgeGroup
+        decimal IndividualIncome ">= 0"
+        boolean Debt
+    }
+    HealthLabel {
+        int HealthLabelID PK "AUTO_INCREMENT"
+        varchar CategoryLabelName UK "NOT NULL"
+        varchar Description
+    }
+    HealthMetrics {
+        int PersonID PK, FK "1:1 with Person"
+        int HealthLabelID FK "NOT NULL"
+        date MeasurementDate
+        decimal DistanceToCareKM ">= 0"
+        boolean HasInsurance
+        decimal BMI "10-100"
+        int ChronicConditionsCount "NOT NULL, 0-20"
+        tinyint SelfReportedHealth "1-5"
+        tinyint MentalHealthScore "1-5"
+        boolean SmokingStatus
+        tinyint ExerciseDaysPerWeek "0-7"
+    }

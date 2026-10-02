@@ -1,0 +1,76 @@
+variable,category,count_in_5_state_population
+ADDEPEV3,dont_know,239
+ADDEPEV3,refused,65
+ADDEPEV3,valid,42708
+ASTHMA3,dont_know,160
+ASTHMA3,refused,28
+ASTHMA3,valid,42824
+CHCCOPD3,dont_know,205
+CHCCOPD3,refused,30
+CHCCOPD3,valid,42777
+CHCKDNY2,dont_know,132
+CHCKDNY2,refused,28
+CHCKDNY2,valid,42852
+CHCOCNC1,dont_know,202
+CHCOCNC1,refused,37
+CHCOCNC1,valid,42773
+CHILDREN,"88 = none (zero children, valid)",30598
+CHILDREN,blank (not asked / skip pattern / not computed),581
+CHILDREN,refused,453
+CHILDREN,valid,11380
+CVDCRHD4,dont_know,399
+CVDCRHD4,refused,32
+CVDCRHD4,valid,42581
+CVDINFR4,dont_know,270
+CVDINFR4,refused,25
+CVDINFR4,valid,42717
+CVDSTRK3,dont_know,112
+CVDSTRK3,refused,28
+CVDSTRK3,valid,42872
+DIABETE4,dont_know,90
+DIABETE4,refused,35
+DIABETE4,valid,42887
+EXERANY2,dont_know,79
+EXERANY2,refused,32
+EXERANY2,valid,42901
+EXEROFT1,blank (not asked / skip pattern / not computed),11215
+EXEROFT1,dont_know,690
+EXEROFT1,refused,68
+EXEROFT1,valid,31039
+GENHLTH,dont_know,104
+GENHLTH,refused,44
+GENHLTH,valid,42864
+HAVARTH4,dont_know,238
+HAVARTH4,refused,33
+HAVARTH4,valid,42741
+HHADULT,blank (not asked / skip pattern / not computed),6958
+HHADULT,dont_know,155
+HHADULT,refused,223
+HHADULT,valid,35676
+IDATE,valid,43012
+INCOME3,blank (not asked / skip pattern / not computed),874
+INCOME3,dont_know,3898
+INCOME3,refused,3812
+INCOME3,valid,34428
+MENTHLTH,"88 = none (zero days, valid)",24533
+MENTHLTH,dont_know,762
+MENTHLTH,refused,228
+MENTHLTH,valid,17489
+MSCODE,blank (not asked / skip pattern / not computed),36090
+MSCODE,valid,6922
+NUMADULT,blank (not asked / skip pattern / not computed),36057
+NUMADULT,valid,6955
+PRIMINS1,88 = no coverage (valid),2323
+PRIMINS1,dont_know,1503
+PRIMINS1,refused,666
+PRIMINS1,valid,38520
+SEQNO,valid,43012
+SEXVAR,valid,43012
+_AGEG5YR,dont_know_refused_or_missing,792
+_AGEG5YR,valid,42220
+_BMI5,blank (not asked / skip pattern / not computed),4269
+_BMI5,valid,38743
+_SMOKER3,dont_know_refused_or_missing,2484
+_SMOKER3,valid,40528
+_STATE,valid,43012
+_URBSTAT,valid,43012

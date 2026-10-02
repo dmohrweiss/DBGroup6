@@ -1,0 +1,52 @@
+StateID,StateName,StateAbbrev,BEARegionCode,BEARegionName
+1,Alabama,AL,5,Southeast
+2,Alaska,AK,8,Far West
+4,Arizona,AZ,6,Southwest
+5,Arkansas,AR,5,Southeast
+6,California,CA,8,Far West
+8,Colorado,CO,7,Rocky Mountain
+9,Connecticut,CT,1,New England
+10,Delaware,DE,2,Mideast
+11,District of Columbia,DC,2,Mideast
+12,Florida,FL,5,Southeast
+13,Georgia,GA,5,Southeast
+15,Hawaii,HI,8,Far West
+16,Idaho,ID,7,Rocky Mountain
+17,Illinois,IL,3,Great Lakes
+18,Indiana,IN,3,Great Lakes
+19,Iowa,IA,4,Plains
+20,Kansas,KS,4,Plains
+21,Kentucky,KY,5,Southeast
+22,Louisiana,LA,5,Southeast
+23,Maine,ME,1,New England
+24,Maryland,MD,2,Mideast
+25,Massachusetts,MA,1,New England
+26,Michigan,MI,3,Great Lakes
+27,Minnesota,MN,4,Plains
+28,Mississippi,MS,5,Southeast
+29,Missouri,MO,4,Plains
+30,Montana,MT,7,Rocky Mountain
+31,Nebraska,NE,4,Plains
+32,Nevada,NV,8,Far West
+33,New Hampshire,NH,1,New England
+34,New Jersey,NJ,2,Mideast
+35,New Mexico,NM,6,Southwest
+36,New York,NY,2,Mideast
+37,North Carolina,NC,5,Southeast
+38,North Dakota,ND,4,Plains
+39,Ohio,OH,3,Great Lakes
+40,Oklahoma,OK,6,Southwest
+41,Oregon,OR,8,Far West
+42,Pennsylvania,PA,2,Mideast
+44,Rhode Island,RI,1,New England
+45,South Carolina,SC,5,Southeast
+46,South Dakota,SD,4,Plains
+47,Tennessee,TN,5,Southeast
+48,Texas,TX,6,Southwest
+49,Utah,UT,7,Rocky Mountain
+50,Vermont,VT,1,New England
+51,Virginia,VA,5,Southeast
+53,Washington,WA,8,Far West
+54,West Virginia,WV,5,Southeast
+55,Wisconsin,WI,3,Great Lakes
+56,Wyoming,WY,7,Rocky Mountain

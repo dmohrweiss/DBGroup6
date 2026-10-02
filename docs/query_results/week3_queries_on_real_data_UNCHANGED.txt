@@ -1,0 +1,602 @@
++---------------+---------------+----------------+--------------------+--------+---------------------+----------------+
+| StateName     | ResidenceType | TotalResidents | AvgHouseholdIncome | AvgBMI | AvgDistanceToCareKM | UninsuredCount |
++---------------+---------------+----------------+--------------------+--------+---------------------+----------------+
+| West Virginia | Rural         |             28 |           56354.17 |   25.7 |                NULL |              0 |
+| New York      | Rural         |              2 |           62500.00 |   27.9 |                NULL |              0 |
+| Mississippi   | Rural         |             41 |           62734.38 |   31.3 |                NULL |              4 |
+| Illinois      | Rural         |              3 |           70833.33 |   33.1 |                NULL |              0 |
+| Illinois      | Urban         |             97 |           73735.63 |   28.0 |                NULL |             12 |
+| Mississippi   | Urban         |             59 |           76200.00 |   29.4 |                NULL |              3 |
+| West Virginia | Urban         |             72 |           76388.89 |   29.2 |                NULL |              1 |
+| New York      | Urban         |             98 |           86041.67 |   27.4 |                NULL |              7 |
+| California    | Urban         |             98 |           95500.00 |   27.1 |                NULL |              5 |
+| California    | Rural         |              2 |          125000.00 |   40.7 |                NULL |              0 |
++---------------+---------------+----------------+--------------------+--------+---------------------+----------------+
++----------+----------+-----------------+------------------------+------------------+---------------+
+| PersonID | FullName | HouseholdIncome | ChronicConditionsCount | DistanceToCareKM | RiskCategory  |
++----------+----------+-----------------+------------------------+------------------+---------------+
+|      471 | NULL     |        12500.00 |                      8 |             NULL | Critical Risk |
+|       92 | NULL     |        12500.00 |                      7 |             NULL | Critical Risk |
+|      463 | NULL     |        12500.00 |                      6 |             NULL | Critical Risk |
+|      219 | NULL     |        12500.00 |                      6 |             NULL | Critical Risk |
+|      445 | NULL     |        22500.00 |                      6 |             NULL | Critical Risk |
+|       84 | NULL     |        30000.00 |                      6 |             NULL | Critical Risk |
+|      289 | NULL     |        12500.00 |                      5 |             NULL | Critical Risk |
+|      433 | NULL     |        17500.00 |                      5 |             NULL | Critical Risk |
+|      333 | NULL     |        22500.00 |                      5 |             NULL | Critical Risk |
+|      275 | NULL     |        30000.00 |                      5 |             NULL | Critical Risk |
+|      265 | NULL     |        30000.00 |                      5 |             NULL | Critical Risk |
+|      240 | NULL     |        42500.00 |                      5 |             NULL | Critical Risk |
+|      281 | NULL     |        62500.00 |                      5 |             NULL | Critical Risk |
+|      451 | NULL     |        12500.00 |                      4 |             NULL | Critical Risk |
+|      203 | NULL     |        17500.00 |                      4 |             NULL | Critical Risk |
+|      500 | NULL     |        22500.00 |                      4 |             NULL | Critical Risk |
+|      384 | NULL     |        22500.00 |                      4 |             NULL | Critical Risk |
+|      438 | NULL     |        42500.00 |                      4 |             NULL | Critical Risk |
+|        2 | NULL     |        62500.00 |                      4 |             NULL | Critical Risk |
+|      411 | NULL     |        62500.00 |                      4 |             NULL | Critical Risk |
+|      487 | NULL     |        62500.00 |                      4 |             NULL | Critical Risk |
+|      110 | NULL     |        62500.00 |                      4 |             NULL | Critical Risk |
+|      205 | NULL     |        12500.00 |                      3 |             NULL | High Burden   |
+|      317 | NULL     |        12500.00 |                      3 |             NULL | Critical Risk |
+|      372 | NULL     |        12500.00 |                      3 |             NULL | Critical Risk |
+|      300 | NULL     |        17500.00 |                      3 |             NULL | Critical Risk |
+|      148 | NULL     |        22500.00 |                      3 |             NULL | High Burden   |
+|      343 | NULL     |        22500.00 |                      3 |             NULL | Critical Risk |
+|      194 | NULL     |        30000.00 |                      3 |             NULL | Critical Risk |
+|      390 | NULL     |        30000.00 |                      3 |             NULL | High Burden   |
+|      428 | NULL     |        30000.00 |                      3 |             NULL | Critical Risk |
+|      373 | NULL     |        30000.00 |                      3 |             NULL | High Burden   |
+|      426 | NULL     |        30000.00 |                      3 |             NULL | Critical Risk |
+|      201 | NULL     |        42500.00 |                      3 |             NULL | High Burden   |
+|      112 | NULL     |        42500.00 |                      3 |             NULL | High Burden   |
+|       96 | NULL     |        42500.00 |                      3 |             NULL | High Burden   |
+|       14 | NULL     |        62500.00 |                      3 |             NULL | High Burden   |
+|      188 | NULL     |        62500.00 |                      3 |             NULL | High Burden   |
+|      132 | NULL     |         5000.00 |                      2 |             NULL | High Burden   |
+|      338 | NULL     |         5000.00 |                      2 |             NULL | High Burden   |
+|      145 | NULL     |         5000.00 |                      2 |             NULL | Moderate Risk |
+|      224 | NULL     |         5000.00 |                      2 |             NULL | Moderate Risk |
+|      474 | NULL     |        12500.00 |                      2 |             NULL | Moderate Risk |
+|      419 | NULL     |        12500.00 |                      2 |             NULL | Moderate Risk |
+|      294 | NULL     |        17500.00 |                      2 |             NULL | Moderate Risk |
+|      406 | NULL     |        17500.00 |                      2 |             NULL | High Burden   |
+|      244 | NULL     |        17500.00 |                      2 |             NULL | Moderate Risk |
+|      101 | NULL     |        22500.00 |                      2 |             NULL | High Burden   |
+|      422 | NULL     |        22500.00 |                      2 |             NULL | High Burden   |
+|      432 | NULL     |        22500.00 |                      2 |             NULL | Moderate Risk |
+|      431 | NULL     |        22500.00 |                      2 |             NULL | High Burden   |
+|      429 | NULL     |        22500.00 |                      2 |             NULL | High Burden   |
+|      242 | NULL     |        22500.00 |                      2 |             NULL | High Burden   |
+|      192 | NULL     |        22500.00 |                      2 |             NULL | High Burden   |
+|       20 | NULL     |        30000.00 |                      2 |             NULL | Moderate Risk |
+|      491 | NULL     |        30000.00 |                      2 |             NULL | High Burden   |
+|       15 | NULL     |        30000.00 |                      2 |             NULL | High Burden   |
+|      272 | NULL     |        30000.00 |                      2 |             NULL | High Burden   |
+|      386 | NULL     |        30000.00 |                      2 |             NULL | Moderate Risk |
+|      418 | NULL     |        30000.00 |                      2 |             NULL | Moderate Risk |
+|      427 | NULL     |        30000.00 |                      2 |             NULL | High Burden   |
+|       93 | NULL     |        30000.00 |                      2 |             NULL | High Burden   |
+|       71 | NULL     |        30000.00 |                      2 |             NULL | High Burden   |
+|       54 | NULL     |        42500.00 |                      2 |             NULL | High Burden   |
+|      351 | NULL     |        42500.00 |                      2 |             NULL | Moderate Risk |
+|      105 | NULL     |        42500.00 |                      2 |             NULL | Moderate Risk |
+|      274 | NULL     |        42500.00 |                      2 |             NULL | High Burden   |
+|      103 | NULL     |        42500.00 |                      2 |             NULL | Moderate Risk |
+|      409 | NULL     |        42500.00 |                      2 |             NULL | High Burden   |
+|      383 | NULL     |        42500.00 |                      2 |             NULL | Moderate Risk |
+|      410 | NULL     |        42500.00 |                      2 |             NULL | Moderate Risk |
+|       80 | NULL     |        42500.00 |                      2 |             NULL | High Burden   |
+|       95 | NULL     |        62500.00 |                      2 |             NULL | Moderate Risk |
+|      253 | NULL     |        62500.00 |                      2 |             NULL | Moderate Risk |
+|      353 | NULL     |        62500.00 |                      2 |             NULL | High Burden   |
+|      329 | NULL     |        62500.00 |                      2 |             NULL | Moderate Risk |
+|      461 | NULL     |        62500.00 |                      2 |             NULL | Moderate Risk |
+|      403 | NULL     |        62500.00 |                      2 |             NULL | High Burden   |
+|      298 | NULL     |        62500.00 |                      2 |             NULL | High Burden   |
+|      476 | NULL     |        62500.00 |                      2 |             NULL | High Burden   |
++----------+----------+-----------------+------------------------+------------------+---------------+
++---------------+----------+------------------------+------------------+-------------------+----------------------------+
+| StateName     | FullName | ChronicConditionsCount | DistanceToCareKM | MentalHealthScore | StateHealthDeprivationRank |
++---------------+----------+------------------------+------------------+-------------------+----------------------------+
+| California    | NULL     |                      7 |             NULL |                 2 |                          1 |
+| California    | NULL     |                      6 |             NULL |                 1 |                          2 |
+| California    | NULL     |                      5 |             NULL |                 3 |                          3 |
+| California    | NULL     |                      4 |             NULL |                 4 |                          4 |
+| California    | NULL     |                      4 |             NULL |                 5 |                          5 |
+| California    | NULL     |                      3 |             NULL |                 4 |                          6 |
+| California    | NULL     |                      3 |             NULL |                 4 |                          6 |
+| California    | NULL     |                      3 |             NULL |                 4 |                          6 |
+| California    | NULL     |                      3 |             NULL |                 4 |                          6 |
+| California    | NULL     |                      3 |             NULL |                 5 |                          7 |
+| California    | NULL     |                      3 |             NULL |                 5 |                          7 |
+| California    | NULL     |                      3 |             NULL |                 5 |                          7 |
+| California    | NULL     |                      3 |             NULL |                 5 |                          7 |
+| California    | NULL     |                      2 |             NULL |                 1 |                          8 |
+| California    | NULL     |                      2 |             NULL |                 1 |                          8 |
+| California    | NULL     |                      2 |             NULL |                 1 |                          8 |
+| California    | NULL     |                      2 |             NULL |                 2 |                          9 |
+| California    | NULL     |                      2 |             NULL |                 3 |                         10 |
+| California    | NULL     |                      2 |             NULL |                 4 |                         11 |
+| California    | NULL     |                      2 |             NULL |                 4 |                         11 |
+| California    | NULL     |                      2 |             NULL |                 4 |                         11 |
+| California    | NULL     |                      2 |             NULL |                 4 |                         11 |
+| California    | NULL     |                      2 |             NULL |                 5 |                         12 |
+| California    | NULL     |                      2 |             NULL |                 5 |                         12 |
+| California    | NULL     |                      2 |             NULL |                 5 |                         12 |
+| California    | NULL     |                      2 |             NULL |                 5 |                         12 |
+| California    | NULL     |                      2 |             NULL |                 5 |                         12 |
+| California    | NULL     |                      2 |             NULL |                 5 |                         12 |
+| California    | NULL     |                      2 |             NULL |                 5 |                         12 |
+| California    | NULL     |                      2 |             NULL |                 5 |                         12 |
+| California    | NULL     |                      1 |             NULL |                 1 |                         13 |
+| California    | NULL     |                      1 |             NULL |                 2 |                         14 |
+| California    | NULL     |                      1 |             NULL |                 2 |                         14 |
+| California    | NULL     |                      1 |             NULL |                 2 |                         14 |
+| California    | NULL     |                      1 |             NULL |                 2 |                         14 |
+| California    | NULL     |                      1 |             NULL |                 3 |                         15 |
+| California    | NULL     |                      1 |             NULL |                 3 |                         15 |
+| California    | NULL     |                      1 |             NULL |                 3 |                         15 |
+| California    | NULL     |                      1 |             NULL |                 4 |                         16 |
+| California    | NULL     |                      1 |             NULL |                 4 |                         16 |
+| California    | NULL     |                      1 |             NULL |                 4 |                         16 |
+| California    | NULL     |                      1 |             NULL |                 4 |                         16 |
+| California    | NULL     |                      1 |             NULL |                 4 |                         16 |
+| California    | NULL     |                      1 |             NULL |                 4 |                         16 |
+| California    | NULL     |                      1 |             NULL |                 5 |                         17 |
+| California    | NULL     |                      1 |             NULL |                 5 |                         17 |
+| California    | NULL     |                      1 |             NULL |                 5 |                         17 |
+| California    | NULL     |                      1 |             NULL |                 5 |                         17 |
+| California    | NULL     |                      1 |             NULL |                 5 |                         17 |
+| California    | NULL     |                      1 |             NULL |                 5 |                         17 |
+| California    | NULL     |                      1 |             NULL |                 5 |                         17 |
+| California    | NULL     |                      1 |             NULL |                 5 |                         17 |
+| California    | NULL     |                      1 |             NULL |                 5 |                         17 |
+| California    | NULL     |                      1 |             NULL |                 5 |                         17 |
+| California    | NULL     |                      1 |             NULL |                 5 |                         17 |
+| California    | NULL     |                      1 |             NULL |                 5 |                         17 |
+| California    | NULL     |                      1 |             NULL |                 5 |                         17 |
+| California    | NULL     |                      1 |             NULL |                 5 |                         17 |
+| California    | NULL     |                      1 |             NULL |                 5 |                         17 |
+| California    | NULL     |                      1 |             NULL |                 5 |                         17 |
+| California    | NULL     |                      1 |             NULL |                 5 |                         17 |
+| California    | NULL     |                      1 |             NULL |                 5 |                         17 |
+| California    | NULL     |                      1 |             NULL |                 5 |                         17 |
+| California    | NULL     |                      0 |             NULL |                 1 |                         18 |
+| California    | NULL     |                      0 |             NULL |                 2 |                         19 |
+| California    | NULL     |                      0 |             NULL |                 2 |                         19 |
+| California    | NULL     |                      0 |             NULL |                 3 |                         20 |
+| California    | NULL     |                      0 |             NULL |                 3 |                         20 |
+| California    | NULL     |                      0 |             NULL |                 3 |                         20 |
+| California    | NULL     |                      0 |             NULL |                 4 |                         21 |
+| California    | NULL     |                      0 |             NULL |                 4 |                         21 |
+| California    | NULL     |                      0 |             NULL |                 4 |                         21 |
+| California    | NULL     |                      0 |             NULL |                 4 |                         21 |
+| California    | NULL     |                      0 |             NULL |                 4 |                         21 |
+| California    | NULL     |                      0 |             NULL |                 4 |                         21 |
+| California    | NULL     |                      0 |             NULL |                 4 |                         21 |
+| California    | NULL     |                      0 |             NULL |                 4 |                         21 |
+| California    | NULL     |                      0 |             NULL |                 4 |                         21 |
+| California    | NULL     |                      0 |             NULL |                 4 |                         21 |
+| California    | NULL     |                      0 |             NULL |                 4 |                         21 |
+| California    | NULL     |                      0 |             NULL |                 5 |                         22 |
+| California    | NULL     |                      0 |             NULL |                 5 |                         22 |
+| California    | NULL     |                      0 |             NULL |                 5 |                         22 |
+| California    | NULL     |                      0 |             NULL |                 5 |                         22 |
+| California    | NULL     |                      0 |             NULL |                 5 |                         22 |
+| California    | NULL     |                      0 |             NULL |                 5 |                         22 |
+| California    | NULL     |                      0 |             NULL |                 5 |                         22 |
+| California    | NULL     |                      0 |             NULL |                 5 |                         22 |
+| California    | NULL     |                      0 |             NULL |                 5 |                         22 |
+| California    | NULL     |                      0 |             NULL |                 5 |                         22 |
+| California    | NULL     |                      0 |             NULL |                 5 |                         22 |
+| California    | NULL     |                      0 |             NULL |                 5 |                         22 |
+| California    | NULL     |                      0 |             NULL |                 5 |                         22 |
+| California    | NULL     |                      0 |             NULL |                 5 |                         22 |
+| California    | NULL     |                      0 |             NULL |                 5 |                         22 |
+| California    | NULL     |                      0 |             NULL |                 5 |                         22 |
+| California    | NULL     |                      0 |             NULL |                 5 |                         22 |
+| California    | NULL     |                      0 |             NULL |                 5 |                         22 |
+| California    | NULL     |                      0 |             NULL |                 5 |                         22 |
+| California    | NULL     |                      0 |             NULL |                 5 |                         22 |
+| Illinois      | NULL     |                      4 |             NULL |                 5 |                          1 |
+| Illinois      | NULL     |                      3 |             NULL |                 1 |                          2 |
+| Illinois      | NULL     |                      3 |             NULL |                 1 |                          2 |
+| Illinois      | NULL     |                      3 |             NULL |                 4 |                          3 |
+| Illinois      | NULL     |                      3 |             NULL |                 5 |                          4 |
+| Illinois      | NULL     |                      3 |             NULL |                 5 |                          4 |
+| Illinois      | NULL     |                      3 |             NULL |                 5 |                          4 |
+| Illinois      | NULL     |                      3 |             NULL |                 5 |                          4 |
+| Illinois      | NULL     |                      2 |             NULL |                 1 |                          5 |
+| Illinois      | NULL     |                      2 |             NULL |                 1 |                          5 |
+| Illinois      | NULL     |                      2 |             NULL |                 2 |                          6 |
+| Illinois      | NULL     |                      2 |             NULL |                 3 |                          7 |
+| Illinois      | NULL     |                      2 |             NULL |                 4 |                          8 |
+| Illinois      | NULL     |                      2 |             NULL |                 4 |                          8 |
+| Illinois      | NULL     |                      2 |             NULL |                 4 |                          8 |
+| Illinois      | NULL     |                      2 |             NULL |                 5 |                          9 |
+| Illinois      | NULL     |                      2 |             NULL |                 5 |                          9 |
+| Illinois      | NULL     |                      2 |             NULL |                 5 |                          9 |
+| Illinois      | NULL     |                      2 |             NULL |                 5 |                          9 |
+| Illinois      | NULL     |                      2 |             NULL |                 5 |                          9 |
+| Illinois      | NULL     |                      2 |             NULL |                 5 |                          9 |
+| Illinois      | NULL     |                      2 |             NULL |                 5 |                          9 |
+| Illinois      | NULL     |                      2 |             NULL |                 5 |                          9 |
+| Illinois      | NULL     |                      1 |             NULL |                 1 |                         10 |
+| Illinois      | NULL     |                      1 |             NULL |                 1 |                         10 |
+| Illinois      | NULL     |                      1 |             NULL |                 1 |                         10 |
+| Illinois      | NULL     |                      1 |             NULL |                 1 |                         10 |
+| Illinois      | NULL     |                      1 |             NULL |                 1 |                         10 |
+| Illinois      | NULL     |                      1 |             NULL |                 2 |                         11 |
+| Illinois      | NULL     |                      1 |             NULL |                 2 |                         11 |
+| Illinois      | NULL     |                      1 |             NULL |                 3 |                         12 |
+| Illinois      | NULL     |                      1 |             NULL |                 4 |                         13 |
+| Illinois      | NULL     |                      1 |             NULL |                 4 |                         13 |
+| Illinois      | NULL     |                      1 |             NULL |                 4 |                         13 |
+| Illinois      | NULL     |                      1 |             NULL |                 4 |                         13 |
+| Illinois      | NULL     |                      1 |             NULL |                 4 |                         13 |
+| Illinois      | NULL     |                      1 |             NULL |                 4 |                         13 |
+| Illinois      | NULL     |                      1 |             NULL |                 4 |                         13 |
+| Illinois      | NULL     |                      1 |             NULL |                 5 |                         14 |
+| Illinois      | NULL     |                      1 |             NULL |                 5 |                         14 |
+| Illinois      | NULL     |                      1 |             NULL |                 5 |                         14 |
+| Illinois      | NULL     |                      1 |             NULL |                 5 |                         14 |
+| Illinois      | NULL     |                      1 |             NULL |                 5 |                         14 |
+| Illinois      | NULL     |                      1 |             NULL |                 5 |                         14 |
+| Illinois      | NULL     |                      1 |             NULL |                 5 |                         14 |
+| Illinois      | NULL     |                      1 |             NULL |                 5 |                         14 |
+| Illinois      | NULL     |                      1 |             NULL |                 5 |                         14 |
+| Illinois      | NULL     |                      1 |             NULL |                 5 |                         14 |
+| Illinois      | NULL     |                      1 |             NULL |                 5 |                         14 |
+| Illinois      | NULL     |                      1 |             NULL |                 5 |                         14 |
+| Illinois      | NULL     |                      1 |             NULL |                 5 |                         14 |
+| Illinois      | NULL     |                      1 |             NULL |                 5 |                         14 |
+| Illinois      | NULL     |                      1 |             NULL |                 5 |                         14 |
+| Illinois      | NULL     |                      1 |             NULL |                 5 |                         14 |
+| Illinois      | NULL     |                      1 |             NULL |                 5 |                         14 |
+| Illinois      | NULL     |                      1 |             NULL |                 5 |                         14 |
+| Illinois      | NULL     |                      0 |             NULL |              NULL |                         15 |
+| Illinois      | NULL     |                      0 |             NULL |                 1 |                         16 |
+| Illinois      | NULL     |                      0 |             NULL |                 1 |                         16 |
+| Illinois      | NULL     |                      0 |             NULL |                 2 |                         17 |
+| Illinois      | NULL     |                      0 |             NULL |                 2 |                         17 |
+| Illinois      | NULL     |                      0 |             NULL |                 3 |                         18 |
+| Illinois      | NULL     |                      0 |             NULL |                 3 |                         18 |
+| Illinois      | NULL     |                      0 |             NULL |                 3 |                         18 |
+| Illinois      | NULL     |                      0 |             NULL |                 3 |                         18 |
+| Illinois      | NULL     |                      0 |             NULL |                 4 |                         19 |
+| Illinois      | NULL     |                      0 |             NULL |                 4 |                         19 |
+| Illinois      | NULL     |                      0 |             NULL |                 4 |                         19 |
+| Illinois      | NULL     |                      0 |             NULL |                 4 |                         19 |
+| Illinois      | NULL     |                      0 |             NULL |                 4 |                         19 |
+| Illinois      | NULL     |                      0 |             NULL |                 4 |                         19 |
+| Illinois      | NULL     |                      0 |             NULL |                 4 |                         19 |
+| Illinois      | NULL     |                      0 |             NULL |                 4 |                         19 |
+| Illinois      | NULL     |                      0 |             NULL |                 4 |                         19 |
+| Illinois      | NULL     |                      0 |             NULL |                 4 |                         19 |
+| Illinois      | NULL     |                      0 |             NULL |                 4 |                         19 |
+| Illinois      | NULL     |                      0 |             NULL |                 5 |                         20 |
+| Illinois      | NULL     |                      0 |             NULL |                 5 |                         20 |
+| Illinois      | NULL     |                      0 |             NULL |                 5 |                         20 |
+| Illinois      | NULL     |                      0 |             NULL |                 5 |                         20 |
+| Illinois      | NULL     |                      0 |             NULL |                 5 |                         20 |
+| Illinois      | NULL     |                      0 |             NULL |                 5 |                         20 |
+| Illinois      | NULL     |                      0 |             NULL |                 5 |                         20 |
+| Illinois      | NULL     |                      0 |             NULL |                 5 |                         20 |
+| Illinois      | NULL     |                      0 |             NULL |                 5 |                         20 |
+| Illinois      | NULL     |                      0 |             NULL |                 5 |                         20 |
+| Illinois      | NULL     |                      0 |             NULL |                 5 |                         20 |
+| Illinois      | NULL     |                      0 |             NULL |                 5 |                         20 |
+| Illinois      | NULL     |                      0 |             NULL |                 5 |                         20 |
+| Illinois      | NULL     |                      0 |             NULL |                 5 |                         20 |
+| Illinois      | NULL     |                      0 |             NULL |                 5 |                         20 |
+| Illinois      | NULL     |                      0 |             NULL |                 5 |                         20 |
+| Illinois      | NULL     |                      0 |             NULL |                 5 |                         20 |
+| Illinois      | NULL     |                      0 |             NULL |                 5 |                         20 |
+| Illinois      | NULL     |                      0 |             NULL |                 5 |                         20 |
+| Illinois      | NULL     |                      0 |             NULL |                 5 |                         20 |
+| Illinois      | NULL     |                      0 |             NULL |                 5 |                         20 |
+| Illinois      | NULL     |                      0 |             NULL |                 5 |                         20 |
+| Illinois      | NULL     |                      0 |             NULL |                 5 |                         20 |
+| Illinois      | NULL     |                      0 |             NULL |                 5 |                         20 |
+| Mississippi   | NULL     |                      6 |             NULL |                 4 |                          1 |
+| Mississippi   | NULL     |                      5 |             NULL |                 1 |                          2 |
+| Mississippi   | NULL     |                      5 |             NULL |                 2 |                          3 |
+| Mississippi   | NULL     |                      5 |             NULL |                 3 |                          4 |
+| Mississippi   | NULL     |                      5 |             NULL |                 4 |                          5 |
+| Mississippi   | NULL     |                      5 |             NULL |                 4 |                          5 |
+| Mississippi   | NULL     |                      5 |             NULL |                 5 |                          6 |
+| Mississippi   | NULL     |                      4 |             NULL |                 3 |                          7 |
+| Mississippi   | NULL     |                      4 |             NULL |                 5 |                          8 |
+| Mississippi   | NULL     |                      3 |             NULL |                 2 |                          9 |
+| Mississippi   | NULL     |                      3 |             NULL |                 3 |                         10 |
+| Mississippi   | NULL     |                      3 |             NULL |                 4 |                         11 |
+| Mississippi   | NULL     |                      3 |             NULL |                 5 |                         12 |
+| Mississippi   | NULL     |                      3 |             NULL |                 5 |                         12 |
+| Mississippi   | NULL     |                      2 |             NULL |              NULL |                         13 |
+| Mississippi   | NULL     |                      2 |             NULL |                 1 |                         14 |
+| Mississippi   | NULL     |                      2 |             NULL |                 3 |                         15 |
+| Mississippi   | NULL     |                      2 |             NULL |                 3 |                         15 |
+| Mississippi   | NULL     |                      2 |             NULL |                 5 |                         16 |
+| Mississippi   | NULL     |                      2 |             NULL |                 5 |                         16 |
+| Mississippi   | NULL     |                      2 |             NULL |                 5 |                         16 |
+| Mississippi   | NULL     |                      2 |             NULL |                 5 |                         16 |
+| Mississippi   | NULL     |                      2 |             NULL |                 5 |                         16 |
+| Mississippi   | NULL     |                      2 |             NULL |                 5 |                         16 |
+| Mississippi   | NULL     |                      2 |             NULL |                 5 |                         16 |
+| Mississippi   | NULL     |                      2 |             NULL |                 5 |                         16 |
+| Mississippi   | NULL     |                      2 |             NULL |                 5 |                         16 |
+| Mississippi   | NULL     |                      1 |             NULL |              NULL |                         17 |
+| Mississippi   | NULL     |                      1 |             NULL |                 1 |                         18 |
+| Mississippi   | NULL     |                      1 |             NULL |                 2 |                         19 |
+| Mississippi   | NULL     |                      1 |             NULL |                 2 |                         19 |
+| Mississippi   | NULL     |                      1 |             NULL |                 3 |                         20 |
+| Mississippi   | NULL     |                      1 |             NULL |                 4 |                         21 |
+| Mississippi   | NULL     |                      1 |             NULL |                 4 |                         21 |
+| Mississippi   | NULL     |                      1 |             NULL |                 4 |                         21 |
+| Mississippi   | NULL     |                      1 |             NULL |                 4 |                         21 |
+| Mississippi   | NULL     |                      1 |             NULL |                 4 |                         21 |
+| Mississippi   | NULL     |                      1 |             NULL |                 5 |                         22 |
+| Mississippi   | NULL     |                      1 |             NULL |                 5 |                         22 |
+| Mississippi   | NULL     |                      1 |             NULL |                 5 |                         22 |
+| Mississippi   | NULL     |                      1 |             NULL |                 5 |                         22 |
+| Mississippi   | NULL     |                      1 |             NULL |                 5 |                         22 |
+| Mississippi   | NULL     |                      1 |             NULL |                 5 |                         22 |
+| Mississippi   | NULL     |                      1 |             NULL |                 5 |                         22 |
+| Mississippi   | NULL     |                      1 |             NULL |                 5 |                         22 |
+| Mississippi   | NULL     |                      1 |             NULL |                 5 |                         22 |
+| Mississippi   | NULL     |                      1 |             NULL |                 5 |                         22 |
+| Mississippi   | NULL     |                      1 |             NULL |                 5 |                         22 |
+| Mississippi   | NULL     |                      1 |             NULL |                 5 |                         22 |
+| Mississippi   | NULL     |                      1 |             NULL |                 5 |                         22 |
+| Mississippi   | NULL     |                      1 |             NULL |                 5 |                         22 |
+| Mississippi   | NULL     |                      1 |             NULL |                 5 |                         22 |
+| Mississippi   | NULL     |                      1 |             NULL |                 5 |                         22 |
+| Mississippi   | NULL     |                      1 |             NULL |                 5 |                         22 |
+| Mississippi   | NULL     |                      1 |             NULL |                 5 |                         22 |
+| Mississippi   | NULL     |                      1 |             NULL |                 5 |                         22 |
+| Mississippi   | NULL     |                      1 |             NULL |                 5 |                         22 |
+| Mississippi   | NULL     |                      0 |             NULL |              NULL |                         23 |
+| Mississippi   | NULL     |                      0 |             NULL |                 1 |                         24 |
+| Mississippi   | NULL     |                      0 |             NULL |                 1 |                         24 |
+| Mississippi   | NULL     |                      0 |             NULL |                 3 |                         25 |
+| Mississippi   | NULL     |                      0 |             NULL |                 3 |                         25 |
+| Mississippi   | NULL     |                      0 |             NULL |                 3 |                         25 |
+| Mississippi   | NULL     |                      0 |             NULL |                 3 |                         25 |
+| Mississippi   | NULL     |                      0 |             NULL |                 3 |                         25 |
+| Mississippi   | NULL     |                      0 |             NULL |                 3 |                         25 |
+| Mississippi   | NULL     |                      0 |             NULL |                 4 |                         26 |
+| Mississippi   | NULL     |                      0 |             NULL |                 4 |                         26 |
+| Mississippi   | NULL     |                      0 |             NULL |                 4 |                         26 |
+| Mississippi   | NULL     |                      0 |             NULL |                 4 |                         26 |
+| Mississippi   | NULL     |                      0 |             NULL |                 4 |                         26 |
+| Mississippi   | NULL     |                      0 |             NULL |                 4 |                         26 |
+| Mississippi   | NULL     |                      0 |             NULL |                 4 |                         26 |
+| Mississippi   | NULL     |                      0 |             NULL |                 4 |                         26 |
+| Mississippi   | NULL     |                      0 |             NULL |                 4 |                         26 |
+| Mississippi   | NULL     |                      0 |             NULL |                 5 |                         27 |
+| Mississippi   | NULL     |                      0 |             NULL |                 5 |                         27 |
+| Mississippi   | NULL     |                      0 |             NULL |                 5 |                         27 |
+| Mississippi   | NULL     |                      0 |             NULL |                 5 |                         27 |
+| Mississippi   | NULL     |                      0 |             NULL |                 5 |                         27 |
+| Mississippi   | NULL     |                      0 |             NULL |                 5 |                         27 |
+| Mississippi   | NULL     |                      0 |             NULL |                 5 |                         27 |
+| Mississippi   | NULL     |                      0 |             NULL |                 5 |                         27 |
+| Mississippi   | NULL     |                      0 |             NULL |                 5 |                         27 |
+| Mississippi   | NULL     |                      0 |             NULL |                 5 |                         27 |
+| Mississippi   | NULL     |                      0 |             NULL |                 5 |                         27 |
+| Mississippi   | NULL     |                      0 |             NULL |                 5 |                         27 |
+| Mississippi   | NULL     |                      0 |             NULL |                 5 |                         27 |
+| Mississippi   | NULL     |                      0 |             NULL |                 5 |                         27 |
+| Mississippi   | NULL     |                      0 |             NULL |                 5 |                         27 |
+| Mississippi   | NULL     |                      0 |             NULL |                 5 |                         27 |
+| Mississippi   | NULL     |                      0 |             NULL |                 5 |                         27 |
+| Mississippi   | NULL     |                      0 |             NULL |                 5 |                         27 |
+| Mississippi   | NULL     |                      0 |             NULL |                 5 |                         27 |
+| Mississippi   | NULL     |                      0 |             NULL |                 5 |                         27 |
+| Mississippi   | NULL     |                      0 |             NULL |                 5 |                         27 |
+| Mississippi   | NULL     |                      0 |             NULL |                 5 |                         27 |
+| Mississippi   | NULL     |                      0 |             NULL |                 5 |                         27 |
+| Mississippi   | NULL     |                      0 |             NULL |                 5 |                         27 |
+| Mississippi   | NULL     |                      0 |             NULL |                 5 |                         27 |
+| New York      | NULL     |                      5 |             NULL |                 4 |                          1 |
+| New York      | NULL     |                      5 |             NULL |                 5 |                          2 |
+| New York      | NULL     |                      4 |             NULL |                 5 |                          3 |
+| New York      | NULL     |                      3 |             NULL |                 1 |                          4 |
+| New York      | NULL     |                      3 |             NULL |                 2 |                          5 |
+| New York      | NULL     |                      3 |             NULL |                 2 |                          5 |
+| New York      | NULL     |                      3 |             NULL |                 3 |                          6 |
+| New York      | NULL     |                      3 |             NULL |                 5 |                          7 |
+| New York      | NULL     |                      3 |             NULL |                 5 |                          7 |
+| New York      | NULL     |                      2 |             NULL |                 2 |                          8 |
+| New York      | NULL     |                      2 |             NULL |                 2 |                          8 |
+| New York      | NULL     |                      2 |             NULL |                 2 |                          8 |
+| New York      | NULL     |                      2 |             NULL |                 3 |                          9 |
+| New York      | NULL     |                      2 |             NULL |                 3 |                          9 |
+| New York      | NULL     |                      2 |             NULL |                 4 |                         10 |
+| New York      | NULL     |                      2 |             NULL |                 4 |                         10 |
+| New York      | NULL     |                      2 |             NULL |                 4 |                         10 |
+| New York      | NULL     |                      2 |             NULL |                 5 |                         11 |
+| New York      | NULL     |                      2 |             NULL |                 5 |                         11 |
+| New York      | NULL     |                      2 |             NULL |                 5 |                         11 |
+| New York      | NULL     |                      2 |             NULL |                 5 |                         11 |
+| New York      | NULL     |                      2 |             NULL |                 5 |                         11 |
+| New York      | NULL     |                      2 |             NULL |                 5 |                         11 |
+| New York      | NULL     |                      2 |             NULL |                 5 |                         11 |
+| New York      | NULL     |                      2 |             NULL |                 5 |                         11 |
+| New York      | NULL     |                      2 |             NULL |                 5 |                         11 |
+| New York      | NULL     |                      1 |             NULL |                 2 |                         12 |
+| New York      | NULL     |                      1 |             NULL |                 2 |                         12 |
+| New York      | NULL     |                      1 |             NULL |                 3 |                         13 |
+| New York      | NULL     |                      1 |             NULL |                 3 |                         13 |
+| New York      | NULL     |                      1 |             NULL |                 3 |                         13 |
+| New York      | NULL     |                      1 |             NULL |                 4 |                         14 |
+| New York      | NULL     |                      1 |             NULL |                 4 |                         14 |
+| New York      | NULL     |                      1 |             NULL |                 4 |                         14 |
+| New York      | NULL     |                      1 |             NULL |                 4 |                         14 |
+| New York      | NULL     |                      1 |             NULL |                 4 |                         14 |
+| New York      | NULL     |                      1 |             NULL |                 4 |                         14 |
+| New York      | NULL     |                      1 |             NULL |                 4 |                         14 |
+| New York      | NULL     |                      1 |             NULL |                 4 |                         14 |
+| New York      | NULL     |                      1 |             NULL |                 5 |                         15 |
+| New York      | NULL     |                      1 |             NULL |                 5 |                         15 |
+| New York      | NULL     |                      1 |             NULL |                 5 |                         15 |
+| New York      | NULL     |                      1 |             NULL |                 5 |                         15 |
+| New York      | NULL     |                      1 |             NULL |                 5 |                         15 |
+| New York      | NULL     |                      1 |             NULL |                 5 |                         15 |
+| New York      | NULL     |                      1 |             NULL |                 5 |                         15 |
+| New York      | NULL     |                      1 |             NULL |                 5 |                         15 |
+| New York      | NULL     |                      1 |             NULL |                 5 |                         15 |
+| New York      | NULL     |                      1 |             NULL |                 5 |                         15 |
+| New York      | NULL     |                      1 |             NULL |                 5 |                         15 |
+| New York      | NULL     |                      1 |             NULL |                 5 |                         15 |
+| New York      | NULL     |                      1 |             NULL |                 5 |                         15 |
+| New York      | NULL     |                      1 |             NULL |                 5 |                         15 |
+| New York      | NULL     |                      1 |             NULL |                 5 |                         15 |
+| New York      | NULL     |                      1 |             NULL |                 5 |                         15 |
+| New York      | NULL     |                      1 |             NULL |                 5 |                         15 |
+| New York      | NULL     |                      1 |             NULL |                 5 |                         15 |
+| New York      | NULL     |                      1 |             NULL |                 5 |                         15 |
+| New York      | NULL     |                      1 |             NULL |                 5 |                         15 |
+| New York      | NULL     |                      1 |             NULL |                 5 |                         15 |
+| New York      | NULL     |                      1 |             NULL |                 5 |                         15 |
+| New York      | NULL     |                      1 |             NULL |                 5 |                         15 |
+| New York      | NULL     |                      0 |             NULL |                 1 |                         16 |
+| New York      | NULL     |                      0 |             NULL |                 1 |                         16 |
+| New York      | NULL     |                      0 |             NULL |                 4 |                         17 |
+| New York      | NULL     |                      0 |             NULL |                 4 |                         17 |
+| New York      | NULL     |                      0 |             NULL |                 4 |                         17 |
+| New York      | NULL     |                      0 |             NULL |                 4 |                         17 |
+| New York      | NULL     |                      0 |             NULL |                 4 |                         17 |
+| New York      | NULL     |                      0 |             NULL |                 4 |                         17 |
+| New York      | NULL     |                      0 |             NULL |                 4 |                         17 |
+| New York      | NULL     |                      0 |             NULL |                 4 |                         17 |
+| New York      | NULL     |                      0 |             NULL |                 4 |                         17 |
+| New York      | NULL     |                      0 |             NULL |                 4 |                         17 |
+| New York      | NULL     |                      0 |             NULL |                 4 |                         17 |
+| New York      | NULL     |                      0 |             NULL |                 5 |                         18 |
+| New York      | NULL     |                      0 |             NULL |                 5 |                         18 |
+| New York      | NULL     |                      0 |             NULL |                 5 |                         18 |
+| New York      | NULL     |                      0 |             NULL |                 5 |                         18 |
+| New York      | NULL     |                      0 |             NULL |                 5 |                         18 |
+| New York      | NULL     |                      0 |             NULL |                 5 |                         18 |
+| New York      | NULL     |                      0 |             NULL |                 5 |                         18 |
+| New York      | NULL     |                      0 |             NULL |                 5 |                         18 |
+| New York      | NULL     |                      0 |             NULL |                 5 |                         18 |
+| New York      | NULL     |                      0 |             NULL |                 5 |                         18 |
+| New York      | NULL     |                      0 |             NULL |                 5 |                         18 |
+| New York      | NULL     |                      0 |             NULL |                 5 |                         18 |
+| New York      | NULL     |                      0 |             NULL |                 5 |                         18 |
+| New York      | NULL     |                      0 |             NULL |                 5 |                         18 |
+| New York      | NULL     |                      0 |             NULL |                 5 |                         18 |
+| New York      | NULL     |                      0 |             NULL |                 5 |                         18 |
+| New York      | NULL     |                      0 |             NULL |                 5 |                         18 |
+| New York      | NULL     |                      0 |             NULL |                 5 |                         18 |
+| New York      | NULL     |                      0 |             NULL |                 5 |                         18 |
+| New York      | NULL     |                      0 |             NULL |                 5 |                         18 |
+| New York      | NULL     |                      0 |             NULL |                 5 |                         18 |
+| New York      | NULL     |                      0 |             NULL |                 5 |                         18 |
+| New York      | NULL     |                      0 |             NULL |                 5 |                         18 |
+| New York      | NULL     |                      0 |             NULL |                 5 |                         18 |
+| New York      | NULL     |                      0 |             NULL |                 5 |                         18 |
+| West Virginia | NULL     |                      8 |             NULL |                 4 |                          1 |
+| West Virginia | NULL     |                      6 |             NULL |                 4 |                          2 |
+| West Virginia | NULL     |                      6 |             NULL |                 5 |                          3 |
+| West Virginia | NULL     |                      5 |             NULL |              NULL |                          4 |
+| West Virginia | NULL     |                      5 |             NULL |                 1 |                          5 |
+| West Virginia | NULL     |                      4 |             NULL |              NULL |                          6 |
+| West Virginia | NULL     |                      4 |             NULL |                 2 |                          7 |
+| West Virginia | NULL     |                      4 |             NULL |                 3 |                          8 |
+| West Virginia | NULL     |                      4 |             NULL |                 5 |                          9 |
+| West Virginia | NULL     |                      4 |             NULL |                 5 |                          9 |
+| West Virginia | NULL     |                      4 |             NULL |                 5 |                          9 |
+| West Virginia | NULL     |                      4 |             NULL |                 5 |                          9 |
+| West Virginia | NULL     |                      3 |             NULL |              NULL |                         10 |
+| West Virginia | NULL     |                      3 |             NULL |                 4 |                         11 |
+| West Virginia | NULL     |                      3 |             NULL |                 5 |                         12 |
+| West Virginia | NULL     |                      3 |             NULL |                 5 |                         12 |
+| West Virginia | NULL     |                      3 |             NULL |                 5 |                         12 |
+| West Virginia | NULL     |                      3 |             NULL |                 5 |                         12 |
+| West Virginia | NULL     |                      2 |             NULL |              NULL |                         13 |
+| West Virginia | NULL     |                      2 |             NULL |              NULL |                         13 |
+| West Virginia | NULL     |                      2 |             NULL |                 1 |                         14 |
+| West Virginia | NULL     |                      2 |             NULL |                 1 |                         14 |
+| West Virginia | NULL     |                      2 |             NULL |                 1 |                         14 |
+| West Virginia | NULL     |                      2 |             NULL |                 2 |                         15 |
+| West Virginia | NULL     |                      2 |             NULL |                 3 |                         16 |
+| West Virginia | NULL     |                      2 |             NULL |                 3 |                         16 |
+| West Virginia | NULL     |                      2 |             NULL |                 4 |                         17 |
+| West Virginia | NULL     |                      2 |             NULL |                 4 |                         17 |
+| West Virginia | NULL     |                      2 |             NULL |                 5 |                         18 |
+| West Virginia | NULL     |                      2 |             NULL |                 5 |                         18 |
+| West Virginia | NULL     |                      2 |             NULL |                 5 |                         18 |
+| West Virginia | NULL     |                      2 |             NULL |                 5 |                         18 |
+| West Virginia | NULL     |                      2 |             NULL |                 5 |                         18 |
+| West Virginia | NULL     |                      2 |             NULL |                 5 |                         18 |
+| West Virginia | NULL     |                      2 |             NULL |                 5 |                         18 |
+| West Virginia | NULL     |                      2 |             NULL |                 5 |                         18 |
+| West Virginia | NULL     |                      2 |             NULL |                 5 |                         18 |
+| West Virginia | NULL     |                      2 |             NULL |                 5 |                         18 |
+| West Virginia | NULL     |                      2 |             NULL |                 5 |                         18 |
+| West Virginia | NULL     |                      2 |             NULL |                 5 |                         18 |
+| West Virginia | NULL     |                      2 |             NULL |                 5 |                         18 |
+| West Virginia | NULL     |                      1 |             NULL |              NULL |                         19 |
+| West Virginia | NULL     |                      1 |             NULL |              NULL |                         19 |
+| West Virginia | NULL     |                      1 |             NULL |                 1 |                         20 |
+| West Virginia | NULL     |                      1 |             NULL |                 1 |                         20 |
+| West Virginia | NULL     |                      1 |             NULL |                 1 |                         20 |
+| West Virginia | NULL     |                      1 |             NULL |                 1 |                         20 |
+| West Virginia | NULL     |                      1 |             NULL |                 1 |                         20 |
+| West Virginia | NULL     |                      1 |             NULL |                 1 |                         20 |
+| West Virginia | NULL     |                      1 |             NULL |                 1 |                         20 |
+| West Virginia | NULL     |                      1 |             NULL |                 1 |                         20 |
+| West Virginia | NULL     |                      1 |             NULL |                 2 |                         21 |
+| West Virginia | NULL     |                      1 |             NULL |                 2 |                         21 |
+| West Virginia | NULL     |                      1 |             NULL |                 3 |                         22 |
+| West Virginia | NULL     |                      1 |             NULL |                 3 |                         22 |
+| West Virginia | NULL     |                      1 |             NULL |                 3 |                         22 |
+| West Virginia | NULL     |                      1 |             NULL |                 3 |                         22 |
+| West Virginia | NULL     |                      1 |             NULL |                 3 |                         22 |
+| West Virginia | NULL     |                      1 |             NULL |                 4 |                         23 |
+| West Virginia | NULL     |                      1 |             NULL |                 4 |                         23 |
+| West Virginia | NULL     |                      1 |             NULL |                 4 |                         23 |
+| West Virginia | NULL     |                      1 |             NULL |                 4 |                         23 |
+| West Virginia | NULL     |                      1 |             NULL |                 4 |                         23 |
+| West Virginia | NULL     |                      1 |             NULL |                 5 |                         24 |
+| West Virginia | NULL     |                      1 |             NULL |                 5 |                         24 |
+| West Virginia | NULL     |                      1 |             NULL |                 5 |                         24 |
+| West Virginia | NULL     |                      1 |             NULL |                 5 |                         24 |
+| West Virginia | NULL     |                      1 |             NULL |                 5 |                         24 |
+| West Virginia | NULL     |                      1 |             NULL |                 5 |                         24 |
+| West Virginia | NULL     |                      1 |             NULL |                 5 |                         24 |
+| West Virginia | NULL     |                      1 |             NULL |                 5 |                         24 |
+| West Virginia | NULL     |                      1 |             NULL |                 5 |                         24 |
+| West Virginia | NULL     |                      1 |             NULL |                 5 |                         24 |
+| West Virginia | NULL     |                      1 |             NULL |                 5 |                         24 |
+| West Virginia | NULL     |                      1 |             NULL |                 5 |                         24 |
+| West Virginia | NULL     |                      1 |             NULL |                 5 |                         24 |
+| West Virginia | NULL     |                      1 |             NULL |                 5 |                         24 |
+| West Virginia | NULL     |                      1 |             NULL |                 5 |                         24 |
+| West Virginia | NULL     |                      1 |             NULL |                 5 |                         24 |
+| West Virginia | NULL     |                      1 |             NULL |                 5 |                         24 |
+| West Virginia | NULL     |                      1 |             NULL |                 5 |                         24 |
+| West Virginia | NULL     |                      1 |             NULL |                 5 |                         24 |
+| West Virginia | NULL     |                      0 |             NULL |                 1 |                         25 |
+| West Virginia | NULL     |                      0 |             NULL |                 1 |                         25 |
+| West Virginia | NULL     |                      0 |             NULL |                 3 |                         26 |
+| West Virginia | NULL     |                      0 |             NULL |                 4 |                         27 |
+| West Virginia | NULL     |                      0 |             NULL |                 4 |                         27 |
+| West Virginia | NULL     |                      0 |             NULL |                 5 |                         28 |
+| West Virginia | NULL     |                      0 |             NULL |                 5 |                         28 |
+| West Virginia | NULL     |                      0 |             NULL |                 5 |                         28 |
+| West Virginia | NULL     |                      0 |             NULL |                 5 |                         28 |
+| West Virginia | NULL     |                      0 |             NULL |                 5 |                         28 |
+| West Virginia | NULL     |                      0 |             NULL |                 5 |                         28 |
+| West Virginia | NULL     |                      0 |             NULL |                 5 |                         28 |
+| West Virginia | NULL     |                      0 |             NULL |                 5 |                         28 |
+| West Virginia | NULL     |                      0 |             NULL |                 5 |                         28 |
+| West Virginia | NULL     |                      0 |             NULL |                 5 |                         28 |
+| West Virginia | NULL     |                      0 |             NULL |                 5 |                         28 |
+| West Virginia | NULL     |                      0 |             NULL |                 5 |                         28 |
+| West Virginia | NULL     |                      0 |             NULL |                 5 |                         28 |
++---------------+----------+------------------------+------------------+-------------------+----------------------------+

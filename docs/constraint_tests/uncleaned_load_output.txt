@@ -1,0 +1,36 @@
++-----------------------+------------------+----------------------------------------------------------+-----------------+
+| TargetColumn          | RawVariable      | error_message                                            | rejected_values |
++-----------------------+------------------+----------------------------------------------------------+-----------------+
+| MeasurementDate       | IDATE            | Incorrect date value: <raw> for column 'MeasurementDate' |             500 |
+| BMI                   | _BMI5            | Out of range value for column 'BMI'                      |             453 |
+| SmokingStatus         | _SMOKER3         | Check constraint 'chk_hm_smoking' is violated.           |             450 |
+| MentalHealthScore     | MENTHLTH         | Check constraint 'chk_hm_mental' is violated.            |             399 |
+| ChildrenUnderLegalAge | CHILDREN         | Check constraint 'chk_hh_children' is violated.          |             340 |
+| HasInsurance          | PRIMINS1         | Check constraint 'chk_hm_insurance' is violated.         |             310 |
+| ExerciseDaysPerWeek   | EXEROFT1         | Check constraint 'chk_hm_exercise' is violated.          |             215 |
+| ExerciseDaysPerWeek   | EXEROFT1         | Out of range value for column 'ExerciseDaysPerWeek'      |             141 |
+| HouseholdSize         | NUMADULT/HHADULT | Check constraint 'chk_hh_children' is violated.          |              78 |
+| SelfReportedHealth    | GENHLTH          | Check constraint 'chk_hm_srh' is violated.               |               1 |
++-----------------------+------------------+----------------------------------------------------------+-----------------+
++-----------------------+
+| total_rejected_values |
++-----------------------+
+|                  2887 |
++-----------------------+
++-----------------------+------------------+-------------+
+| TargetColumn          | RawVariable      | WrongValues |
++-----------------------+------------------+-------------+
+| GenderID              | SEXVAR           |         500 |
+| AgeGroup              | _AGEG5YR         |         500 |
+| HouseholdIncome       | INCOME3          |         488 |
+| SelfReportedHealth    | GENHLTH          |         335 |
+| ExerciseDaysPerWeek   | EXEROFT1         |         138 |
+| MentalHealthScore     | MENTHLTH         |          88 |
+| HouseholdSize         | NUMADULT/HHADULT |          84 |
+| ResidenceTypeID       | _URBSTAT         |          76 |
+| ChildrenUnderLegalAge | CHILDREN         |           0 |
+| MeasurementDate       | IDATE            |           0 |
+| HasInsurance          | PRIMINS1         |           0 |
+| BMI                   | _BMI5            |           0 |
+| SmokingStatus         | _SMOKER3         |           0 |
++-----------------------+------------------+-------------+

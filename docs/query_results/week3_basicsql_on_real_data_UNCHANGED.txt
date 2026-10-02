@@ -1,0 +1,45 @@
+START TRANSACTION
+SELECT CostOfLivingID, StateID, Year, HousingCostIndex FROM CostOfLiving WHERE Year=2023 AND StateID IN (6,17,28,36,54)
++----------------+---------+------+------------------+
+| CostOfLivingID | StateID | Year | HousingCostIndex |
++----------------+---------+------+------------------+
+|             84 |       6 | 2023 |          157.831 |
+|            237 |      17 | 2023 |           92.404 |
+|            424 |      28 | 2023 |           54.923 |
+|            560 |      36 | 2023 |          121.963 |
+|            832 |      54 | 2023 |           56.200 |
++----------------+---------+------+------------------+
+UPDATE HealthMetrics
+SET HealthLabelID = 4
+WHERE MentalHealthScore > 3 AND DistanceToCareKM < 50
+SELECT ROW_COUNT() AS rows_affected
++---------------+
+| rows_affected |
++---------------+
+|             0 |
++---------------+
+UPDATE CostOfLiving
+SET HousingCostIndex = HousingCostIndex - 0.1
+WHERE CostOfLivingID IN (
+    SELECT h.CostOfLivingID
+    FROM Household h
+    JOIN Person p ON h.HouseholdID = p.HouseholdID
+    WHERE h.HouseholdIncome > 10000
+)
+SELECT ROW_COUNT() AS rows_affected
++---------------+
+| rows_affected |
++---------------+
+|             5 |
++---------------+
+SELECT CostOfLivingID, StateID, Year, HousingCostIndex FROM CostOfLiving WHERE Year=2023 AND StateID IN (6,17,28,36,54)
++----------------+---------+------+------------------+
+| CostOfLivingID | StateID | Year | HousingCostIndex |
++----------------+---------+------+------------------+
+|             84 |       6 | 2023 |          157.731 |
+|            237 |      17 | 2023 |           92.304 |
+|            424 |      28 | 2023 |           54.823 |
+|            560 |      36 | 2023 |          121.863 |
+|            832 |      54 | 2023 |           56.100 |
++----------------+---------+------+------------------+
+ROLLBACK
