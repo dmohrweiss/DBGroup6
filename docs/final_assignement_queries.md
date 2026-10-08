@@ -27,3 +27,19 @@ While Daniel's first query focused on the relationship between price-adjusted in
 This query answers the question : Does the combination of high regional housing costs and the presence of minor children in a household correlate with worsened stress levels (measured by `MentalHealthScore`) or negative health behaviors (BMI and smoking rates) across different BEA economic regions?
 
 Daniel’s second query provided a broad state-level comparison of general health and income. This query deepens the analysis of the societal problem by isolating one of the most significant financial burdens: housing costs. By comparing households with children against those without, the query reveals whether the compounded financial strain of raising a family in expensive economic regions translates directly into measurable mental and physical health declines.
+
+## Query 5 : Who Falls Through the Insurance Safety Net? (Author : Khalid, GitHub: KhalidWRamadan)
+
+File: [`Query_5_Khalid.sql`](../Query_5_Khalid.sql)
+
+This query answers the question : Within each age group (18-44, 45-64, 65+), how much more often are people with a low price-adjusted income (under $50,000) uninsured or in fair or poor health than people of the same age with a higher income?
+
+Our problem statement says that rising living costs push vulnerable people to arrive at hospitals more unwell. People without insurance tend to delay care until a problem becomes serious, so the useful question is not only *whether* low income goes with less insurance, but *for whom*. Splitting by age shows where the safety net has gaps. In our data, 21.0% of low-income 18-44 year olds are uninsured against 8.5% of higher-income people of the same age, while almost everyone aged 65+ is covered (Medicare). Low-income 45-64 year olds are covered more often, but 52.9% of them rate their health as fair or poor (10.8% with higher income). This tells policymakers which group to target: coverage support for young low-income adults, and health care for low-income adults before retirement age.
+
+## Query 6 : Income per Household Member and Mental Distress (Author : Khalid, GitHub: KhalidWRamadan)
+
+File: [`Query_6_Khalid.sql`](../Query_6_Khalid.sql)
+
+This query answers the question : When respondents are split into four equal groups by price-adjusted income *per household member*, how do frequent mental distress, fair or poor health and exercise change from the lowest to the highest group?
+
+The same household income has to cover more people in a larger family, and costs more to live on in an expensive state. The query therefore corrects income for both: it divides by the state price level (`CostIndex`) and by the square root of the household size (the OECD equivalence scale). It then uses the window function `NTILE(4)` to form four equal groups. This tests an assumption from our stakeholder video, that economic strain is shared equally by all household members, by measuring strain *per member*. The result links economic strain directly to mental health. In the lowest quarter (households are also the largest, 2.9 people on average) 23.5% report frequent mental distress, meaning 14 or more bad days a month, and 40.0% report fair or poor health. In the highest quarter these figures are 8.7% and 8.7%. Mental-health support and cost-of-living relief are therefore most needed where income must stretch over the most people.
