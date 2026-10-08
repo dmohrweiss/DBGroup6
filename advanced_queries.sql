@@ -1,18 +1,12 @@
 USE healthcare_db;
 
--- Week 5: the Week-3 queries, adapted after running them on real-world data
--- (CDC BRFSS 2023 + BEA Regional Price Parities). The original versions are in
--- commit b10c2e8 (git tag `week3-mock-data` locally); why each change was needed is explained in
--- docs/week5_real_data_integration.md. Results: docs/query_results/.
+-- Week 5: the Week-3 queries, adapted after running them on real-world data. The original versions can
+-- be found in the repository. The new queries are in the same file, after the original ones.
 
 
 -- QUERY 1: Regional & Housing Type Socioeconomic Health Profile
 -- Multi-table JOINs (5 tables), GROUP BY, HAVING, Aggregates (AVG, SUM, COUNT)
 -- Evaluates how average household income, BMI, the local price level and insurance coverage vary across states and residence types.
--- Week-5 changes: HAVING >= 10 (groups of 2-3 respondents gave meaningless averages);
---   DistanceToCareKM replaced by the BEA price indexes (no open source reports distance);
---   income also shown price-adjusted (income / RPP * 100) so states can be compared;
---   uninsured shown as a percentage of respondents who answered (NULL = unknown is excluded).
 
 SELECT
     r.StateName,
@@ -36,12 +30,8 @@ ORDER BY AvgPriceAdjustedIncome ASC;
 
 
 -- QUERY 2: High Health-Risk Individuals in Socioeconomically Deprived Households
--- Common Table Expression (CTE), Subqueries in WHERE, JOINs
--- Pinpoints individuals living in below-average income households who simultaneously suffer from an above-average number of chronic health conditions.
--- Week-5 changes: "below-average income" is now judged on PRICE-ADJUSTED income, because
---   $40,000 buys far less in California (RPP 112) than in Mississippi (RPP 87);
---   survey respondents are anonymous, so FullName falls back to the survey record key;
---   DistanceToCareKM (always NULL) replaced by state and insurance status.
+-- Identifies individuals living in below-average income households who simultaneously suffer from an above-average number of chronic health conditions.
+-- Week-5 changes: "below-average income" is now judged on PRICE-ADJUSTED income.
 
 WITH AdjustedHouseholds AS (
     SELECT h.HouseholdID,
@@ -80,11 +70,8 @@ ORDER BY hm.ChronicConditionsCount DESC, dh.PriceAdjustedIncome ASC, p.PersonID;
 
 -- QUERY 3: State-Level Health Deprivation Ranking Using Window Functions
 -- Window Function (DENSE_RANK() OVER PARTITION BY), CTE, Multi-table JOINs
--- Ranks individuals within their respective State based on multi-factor health risk indicators (chronic conditions count, self-reported health, and mental health score).
--- Week-5 changes: only the 5 worst-off ranks per state are shown (500 rows were unreadable);
---   DistanceToCareKM (always NULL) replaced by SelfReportedHealth in the ranking;
---   unknown (NULL) scores are sorted last: MySQL sorts NULL FIRST in ascending order,
---   which would otherwise rank people who did not answer as the most deprived.
+-- Ranks individuals within their respective State based on multi-factor health risk indicators.
+-- Week-5 changes: only the 5 worst-off ranks per state are shown
 
 WITH RankedResidents AS (
     SELECT
@@ -111,11 +98,10 @@ WHERE StateHealthDeprivationRank <= 5
 ORDER BY StateName, StateHealthDeprivationRank, FullName;
 
 
--- QUERY 4 (new in Week 5): Cost of Living versus Health Outcomes per State
--- Combines BOTH real-world sources: BEA price levels (dataset B) with BRFSS health data (dataset A)
+-- QUERY 4: Cost of Living versus Health Outcomes per State
+-- Combines BOTH real-world sources: BEA price levels with BRFSS health data
 -- GROUP BY, conditional aggregation, RANK() window function
--- Tests whether states where housing is expensive show different insurance coverage and health burden
--- once income is corrected for the local price level.
+-- Tests whether states where housing is expensive show different insurance coverage and health
 
 SELECT
     r.StateName,
@@ -139,13 +125,9 @@ GROUP BY r.StateName, br.RegionName, col.CostIndex, col.HousingCostIndex
 ORDER BY col.CostIndex DESC;
 
 
--- QUERY 5 (new in Week 5): Relative Housing Price Level Over Time (2008-2024)
--- Uses the time dimension of dataset B: CTE, Window functions LAG() and FIRST_VALUE()
--- Shows, for the five study states, the housing price index (US average = 100) per year and
--- its change versus the previous year and versus 2008, i.e. whether the gap between
--- expensive and cheap states is growing or shrinking.
+-- QUERY 5: Relative Housing Price Level Over Time fRAME
 -- The window is computed over ALL years first and filtered afterwards; filtering in the
--- same SELECT would make LAG() compare with the previous *shown* year instead.
+-- same SELECT would compare with the previous shown year instead.
 
 WITH HousingTrend AS (
     SELECT

@@ -1,30 +1,10 @@
--- =====================================================================
--- healthcare_db: bulk-load the real-world data from the cleaned CSV files
---
--- Run AFTER healthcare_db_schema.sql and healthcare_db_lookup.sql,
--- from the repository root (the CSV paths below are relative to it):
---
---   mysql --local-infile=1 -u root -p < healthcare_db_load_data.sql
---
--- LOAD DATA LOCAL must also be allowed by the server (once, as admin):
---   SET GLOBAL local_infile = 1;
---
--- Approach (ELT with staging tables):
---   1. LOAD DATA copies each CSV file as-is into a staging table (all text).
---   2. INSERT ... SELECT moves the rows into the real tables. Foreign keys
---      are resolved by joining on natural keys (lookup labels, state + year,
---      survey record key), so no ID is ever typed in: AUTO_INCREMENT
---      generates them.
---   3. Empty CSV fields mean "missing" and become NULL via NULLIF(x, '').
--- Lookups are joined with LEFT JOIN on purpose: an unknown label then gives a
--- NULL in a NOT NULL column and the load FAILS loudly instead of silently
--- dropping the row (which an inner join would do).
--- =====================================================================
+
+-- healthcare_db: load the real-world data from the cleaned CSV files
+-- Load after the schema and lookup scripts from the repositroy root.
+-- LOCAL INFILE must be enabeld on the server and client.
+-- Data is staging before insertion into the final tables.
 USE healthcare_db;
 
--- ---------------------------------------------------------------------
--- 1. Staging tables (exact copy of the CSV columns, as text)
--- ---------------------------------------------------------------------
 DROP TEMPORARY TABLE IF EXISTS stg_state, stg_cost_of_living, stg_brfss;
 
 CREATE TEMPORARY TABLE stg_state (
@@ -68,38 +48,36 @@ CREATE TEMPORARY TABLE stg_brfss (
   ExerciseDaysPerWeek    VARCHAR(5)
 );
 
-LOAD DATA LOCAL INFILE 'data/processed/bea_states.csv'
+LOAD DATA LOCAL INFILE "data\processed\bea_states.csv"
 INTO TABLE stg_state
 CHARACTER SET utf8mb4
 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 LINES;
 
-LOAD DATA LOCAL INFILE 'data/processed/bea_cost_of_living.csv'
+LOAD DATA LOCAL INFILE "data\processed\bea_cost_of_living.csv"
 INTO TABLE stg_cost_of_living
 CHARACTER SET utf8mb4
 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 LINES;
 
-LOAD DATA LOCAL INFILE 'data/processed/brfss_2023_clean.csv'
+LOAD DATA LOCAL INFILE "data\processed\brfss_2023_clean.csv"
 INTO TABLE stg_brfss
 CHARACTER SET utf8mb4
 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 LINES;
 
--- ---------------------------------------------------------------------
--- 2. Staging -> real tables
--- ---------------------------------------------------------------------
+
 START TRANSACTION;
 
--- Region: one row per state (BEA, 50 states + DC)
+-- Region: one row per state 
 INSERT INTO Region (StateID, StateName, StateAbbrev, BEARegionCode)
 SELECT StateID, StateName, StateAbbrev, BEARegionCode
 FROM stg_state;
 
--- CostOfLiving: one row per state and year (BEA Regional Price Parities)
+-- CostOfLiving: one row per state and year 
 INSERT INTO CostOfLiving (StateID, Year, CostIndex, GoodsCostIndex, HousingCostIndex,
                           UtilitiesCostIndex, OtherServicesCostIndex)
 SELECT StateID, Year,
@@ -132,7 +110,7 @@ JOIN Household h ON h.SourceRecordKey = s.SourceRecordKey
 LEFT JOIN Gender g ON g.Label = s.Gender
 ORDER BY h.HouseholdID;
 
--- HealthMetrics: one per person (BRFSS interviews one adult per household)
+-- HealthMetrics: one per person 
 INSERT INTO HealthMetrics (PersonID, HealthLabelID, MeasurementDate, DistanceToCareKM, HasInsurance,
                            BMI, ChronicConditionsCount, SelfReportedHealth, MentalHealthScore,
                            SmokingStatus, ExerciseDaysPerWeek)
@@ -155,10 +133,6 @@ ORDER BY p.PersonID;
 
 COMMIT;
 
--- ---------------------------------------------------------------------
--- 3. Check: every staged row arrived (expect 51 / 867 / 500 / 500 / 500)
---    and no residence label was left unmatched (expect 0)
--- ---------------------------------------------------------------------
 SELECT 'Region' AS loaded_table, (SELECT COUNT(*) FROM stg_state) AS rows_in_csv, COUNT(*) AS rows_loaded FROM Region
 UNION ALL
 SELECT 'CostOfLiving', (SELECT COUNT(*) FROM stg_cost_of_living), COUNT(*) FROM CostOfLiving

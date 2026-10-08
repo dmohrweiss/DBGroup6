@@ -1,20 +1,16 @@
--- =====================================================================
--- healthcare_db: schema (MySQL 8.0.16+; CHECK constraints are enforced)
+
+-- healthcare_db: schema 
 --
 -- Week 5 revision. Every change against the Week-3 schema is motivated
 -- by the Week-3 feedback or by a mismatch found in the real-world data,
 -- see docs/design_report.md and docs/week5_real_data_integration.md.
 --
--- Load order:  healthcare_db_schema.sql -> healthcare_db_lookup.sql
---              -> healthcare_db_load_data.sql
--- =====================================================================
+-- Load order:  healthcare_db_schema.sql then healthcare_db_lookup.sql
+--              then healthcare_db_load_data.sql
 DROP SCHEMA IF EXISTS healthcare_db;
 CREATE SCHEMA healthcare_db;
 USE healthcare_db;
 
--- ---------------------------------------------------------------------
--- Lookup tables
--- ---------------------------------------------------------------------
 
 CREATE TABLE ResidenceType (
   ResidenceTypeID INT AUTO_INCREMENT PRIMARY KEY,
@@ -33,16 +29,16 @@ CREATE TABLE HealthLabel (
   Description       VARCHAR(255) NULL
 );
 
--- BEA economic region (multi-state). Its name depends only on the region
--- code, so it lives in its own table instead of on every state (3NF).
+-- BEA economic region. Its name depends only on the region
+-- code, so it lives in its own table instead of on every state
 CREATE TABLE BEARegion (
   BEARegionCode INT PRIMARY KEY,                 -- code published by BEA (1-8)
   RegionName    VARCHAR(30) NOT NULL UNIQUE,
   CONSTRAINT chk_bearegion_code CHECK (BEARegionCode BETWEEN 1 AND 8)
 );
 
--- One row per US state (+ DC). StateID is the official FIPS state code:
--- the natural key both real-world sources (CDC BRFSS, BEA) use.
+-- One row per US state. StateID is the official FIPS state code:
+-- the natural key both real-world sources use.
 CREATE TABLE Region (
   StateID       INT PRIMARY KEY,
   StateName     VARCHAR(50) NOT NULL UNIQUE,
@@ -53,10 +49,9 @@ CREATE TABLE Region (
     REFERENCES BEARegion(BEARegionCode) ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
--- ---------------------------------------------------------------------
+
 -- Cost of living: BEA Regional Price Parities, one row per state per year
--- (index, US average = 100)
--- ---------------------------------------------------------------------
+
 CREATE TABLE CostOfLiving (
   CostOfLivingID         INT AUTO_INCREMENT PRIMARY KEY,
   StateID                INT          NOT NULL,
@@ -77,9 +72,7 @@ CREATE TABLE CostOfLiving (
     REFERENCES Region(StateID) ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
--- ---------------------------------------------------------------------
 -- Household, Person, HealthMetrics
--- ---------------------------------------------------------------------
 CREATE TABLE Household (
   HouseholdID           INT AUTO_INCREMENT PRIMARY KEY,
   SourceRecordKey       VARCHAR(40)   NULL UNIQUE, -- survey interview, e.g. BRFSS2023-06-2023005145
