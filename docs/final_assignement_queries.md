@@ -43,3 +43,21 @@ File: [`Query_6_Khalid.sql`](../Query_6_Khalid.sql)
 This query answers the question : When respondents are split into four equal groups by price-adjusted income *per household member*, how do frequent mental distress, fair or poor health and exercise change from the lowest to the highest group?
 
 The same household income has to cover more people in a larger family, and costs more to live on in an expensive state. The query therefore corrects income for both: it divides by the state price level (`CostIndex`) and by the square root of the household size (the OECD equivalence scale). It then uses the window function `NTILE(4)` to form four equal groups. This tests an assumption from our stakeholder video, that economic strain is shared equally by all household members, by measuring strain *per member*. The result links economic strain directly to mental health. In the lowest quarter (households are also the largest, 2.9 people on average) 23.5% report frequent mental distress, meaning 14 or more bad days a month, and 40.0% report fair or poor health. In the highest quarter these figures are 8.7% and 8.7%. Mental-health support and cost-of-living relief are therefore most needed where income must stretch over the most people.
+
+## Query 7 : The correlation between Living Alone and Mental Distress in High Cost of living (Author : Petr)
+
+File: [`Query_7_Petr.sql`](../Query_7_Petr.sql)
+
+This query answers the question of whether liiving alone in high-cost states affects the mental distress of a person, lack of insurance and chronic conditions
+compared to other people living together in more affordable districts?
+
+Single adults face the full burden of living costs without a second earner to help. This query groups respondents by whether they live alone (HouseholdSize = 1) and cross-references this with the state's price level (CostIndex). It tests whether the financial strain of living alone in an expensive region directly worsens mental health and healthcare access. For example, [16.7]% of people living alone in high-cost states report frequent mental distress, compared to only [14.8]% of people living with others in low-cost states. The difference in those 2 numbers is not significant, but surprisingly, only [10.7]% of people suffer from mental distress in high-cost states who live in family. This shows exactly where financial and mental health safety nets are needed most.
+
+## Query 8 : The nutritional difference: correlation between high-cost goods & obesity and physical health (Author : Petr)
+
+File: [`Query_8_Petr.sql`](../Query_8_Petr.sql)
+
+This query answers the question of whether the high cost for goods forces the low-income households rely on cheap food and, as a result, have physical health problems
+
+When cost of living is high, the health inequality can simply be shown by what food people eat. This query groups participants by their income (HouseholdIncome under or over $50,000) and the local cost of products (GoodsCostIndex above or below the 100 national baseline). It tests whether this daily economic correlates directly with factors like obesity (BMI >= 30) or chronic diseases. For example, lower-income people tend to have much more chronic conditions on average, (1.97 and 1.19) to (0.93 and 0.96). Interestingly, the obesity rates are very high at the states with low cost of goods, not depending on the income.
+

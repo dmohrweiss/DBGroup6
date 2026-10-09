@@ -1,23 +1,18 @@
--- =====================================================================
 -- Constraint test: what if the BRFSS codes were loaded WITHOUT cleaning?
 --
 -- Run after the normal load, from the repository root:
 --   mysql --local-infile=1 -u root -p -t < docs/constraint_tests/uncleaned_load_test.sql
 --
--- 1. The raw extract (original BRFSS codes) is bulk-loaded into a staging table.
--- 2. For 13 columns, every cleaned value in the database is replaced by the raw
---    code with a naive 1:1 mapping (e.g. GENHLTH -> SelfReportedHealth).
---    A stored procedure does this one value at a time and catches each error,
---    because MySQL reports only the first violation of a multi-row statement.
+-- 1. Load the raw extract into a staging table, then add data into raw-test with correspongding original values.
+-- 2. For each raw value, try to write it into the target column, and log any errors.
 -- 3. Report: which raw codes the constraints REJECTED, and which ones were
 --    ACCEPTED although they differ from the correctly cleaned value.
 -- Everything happens inside a transaction that is rolled back.
--- =====================================================================
+
 USE healthcare_db;
 
--- ---------------------------------------------------------------------
--- 1. Raw extract -> staging
--- ---------------------------------------------------------------------
+
+-- 1. Raw extract into staging tables
 DROP TEMPORARY TABLE IF EXISTS stg_raw, raw_test, raw_test_errors, accepted_but_wrong,
                                clean_household, clean_person, clean_healthmetrics;
 
@@ -38,7 +33,7 @@ FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 LINES;
 
--- One row per (respondent, tested column): the naive "no cleaning" mapping
+-- The naive "no cleaning" mapping
 CREATE TEMPORARY TABLE raw_test (
   SourceRecordKey VARCHAR(40),
   TargetTable     VARCHAR(20),
@@ -79,9 +74,8 @@ CREATE TEMPORARY TABLE clean_household     AS SELECT * FROM Household;
 CREATE TEMPORARY TABLE clean_person        AS SELECT * FROM Person;
 CREATE TEMPORARY TABLE clean_healthmetrics AS SELECT * FROM HealthMetrics;
 
--- ---------------------------------------------------------------------
+
 -- 2. Procedure: write every raw value into its target column, log errors
--- ---------------------------------------------------------------------
 DROP PROCEDURE IF EXISTS try_raw_values;
 DELIMITER //
 CREATE PROCEDURE try_raw_values()
@@ -129,14 +123,13 @@ BEGIN
 END //
 DELIMITER ;
 
--- ---------------------------------------------------------------------
+
 -- 3. Run the test inside a transaction, report, roll back
--- ---------------------------------------------------------------------
 START TRANSACTION;
 
 CALL try_raw_values();
 
--- Rejected by the database (values in the message are masked so equal errors group together)
+-- Rejected by the database
 SELECT TargetColumn,
        RawVariable,
        REGEXP_REPLACE(REPLACE(Message, ' at row 1', ''), 'value: \'[^\']*\'', 'value: <raw>') AS error_message,
